@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Actividad1</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Encabezado -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Fabián Arana M.</div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="viajes.html">Viajes</a></li>
+                        <li><a href="aficiones.html">Aficiones</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido -->
+    <main class="container">
+        <section class="hero">
+            <h1>Bienvenido a mi blog personal</h1>
+            <p>Comparto mis experiencias de viaje, mis aficiones y mis sueños por cumplir. Un espacio donde documentar mi camino por el mundo.</p>
+        </section>
+
+        <section class="section">
+            <h2>Viajes Destacados</h2>
+            <div class="cards">
+                <div class="card">
+                    <div class="card-img" style="background-image: url('images/Berlin.png')"></div>
+                    <div class="card-content">
+                        <h3>Paseando por Berlín</h3>
+                        <p>Mi aventura por las calles de Berlín, recorrdos por museos, principales calles y sus monumentos.</p>
+                        <a href="viajes.html#berlin" class="btn">Leer más</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('images/Amsterdam.png')"></div>
+                    <div class="card-content">
+                        <h3>Navegando en Ámsterdam</h3>
+                        <p>Una semana navegando por sus canales, recorriendo sus calles más imponentes, sus molinos de viento y museos.</p>
+                        <a href="viajes.html#amsterdam" class="btn">Leer más</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('images/Roma.png')"></div>
+                    <div class="card-content">
+                        <h3>Roma y su coliseo</h3>
+                        <p>Descubriendo la verdadera gastronomía italiana, su glorioso pasado, un museo al aire libre.</p>
+                        <a href="viajes.html#roma" class="btn">Leer más</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Mis Aficiones</h2>
+            <div class="cards">
+                <div class="card">
+                    <div class="card-img" style="background-image: url('images/Camara.png')"></div>
+                    <div class="card-content">
+                        <h3>Fotografía</h3>
+                        <p>Capturando momentos especiales y paisajes increíbles en mis viajes.</p>
+                        <a href="aficiones.html#fotografia" class="btn">Ver galería</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('images/Cocina.png')"></div>
+                    <div class="card-content">
+                        <h3>Cocina</h3>
+                        <p>Recreando los platos mas destacados de la cocina internacional.</p>
+                        <a href="aficiones.html#cocina" class="btn">Ver recetas</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('images/Deportes.png')"></div>
+                    <div class="card-content">
+                        <h3>Deporte</h3>
+                        <p>Mente sana en cuerpo sano, el ejercicio como valvula de escape.</p>
+                        <a href="aficiones.html#senderismo" class="btn">Ver rutinas</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Mi Blog Personal Actividad1 UNIR. Todos los derechos reservados.</p>
+                <div class="social-links">
+                    <a href="#">Instagram</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">YouTube</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Efecto de scroll
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            for (const link of links) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            }
+            
+            // Animación para las tarjetas al hacer scroll
+            const cards = document.querySelectorAll('.card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            cards.forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s, transform 0.5s';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
